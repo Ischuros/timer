@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
 <GridPane alignment="center" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity"
@@ -25,60 +26,86 @@
                 GridPane.halignment="CENTER" GridPane.rowIndex="0"/>
         <Button onAction="#stopTimer" text="Stop" GridPane.columnIndex="1"
                 GridPane.halignment="CENTER" GridPane.rowIndex="0"/>
-        <Text fx:id="timerText" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
         <columnConstraints>
-            <ColumnConstraints percentWidth="10"/>
-            <ColumnConstraints percentWidth="10"/>
-            <ColumnConstraints percentWidth="80"/>
+            <ColumnConstraints percentWidth="50"/>
+            <ColumnConstraints percentWidth="50"/>
         </columnConstraints>
         <rowConstraints>
             <RowConstraints/>
         </rowConstraints>
     </GridPane>
-    <GridPane hgap="3" vgap="3" styleClass="grid-background" GridPane.columnIndex="0"
-              GridPane.rowIndex="1" >
-        <Pane fx:id="paneCol0Row0" styleClass="panel-deactivated" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <Pane fx:id="paneCol0Row1" styleClass="panel-deactivated" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <Pane fx:id="paneCol0Row2" styleClass="panel-deactivated" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <Pane fx:id="paneCol0Row3" styleClass="panel-deactivated" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <StackPane GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <children>
+            <GridPane hgap="3" styleClass="grid-background" vgap="3">
+                <Pane fx:id="paneCol0Row0" styleClass="panel-deactivated" GridPane.columnIndex="0"
+                      GridPane.rowIndex="0"/>
+                <Pane fx:id="paneCol0Row1" styleClass="panel-deactivated" GridPane.columnIndex="0"
+                      GridPane.rowIndex="1"/>
+                <Pane fx:id="paneCol0Row2" styleClass="panel-deactivated" GridPane.columnIndex="0"
+                      GridPane.rowIndex="2"/>
+                <Pane fx:id="paneCol0Row3" styleClass="panel-deactivated" GridPane.columnIndex="0"
+                      GridPane.rowIndex="3"/>
 
-        <Pane fx:id="paneCol1Row0" styleClass="panel-deactivated" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-        <Pane fx:id="paneCol1Row1" styleClass="panel-deactivated" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Pane fx:id="paneCol1Row2" styleClass="panel-deactivated" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <Pane fx:id="paneCol1Row3" styleClass="panel-deactivated" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Pane fx:id="paneCol1Row0" styleClass="panel-deactivated" GridPane.columnIndex="1"
+                      GridPane.rowIndex="0"/>
+                <Pane fx:id="paneCol1Row1" styleClass="panel-deactivated" GridPane.columnIndex="1"
+                      GridPane.rowIndex="1"/>
+                <Pane fx:id="paneCol1Row2" styleClass="panel-deactivated" GridPane.columnIndex="1"
+                      GridPane.rowIndex="2"/>
+                <Pane fx:id="paneCol1Row3" styleClass="panel-deactivated" GridPane.columnIndex="1"
+                      GridPane.rowIndex="3"/>
 
-        <Pane fx:id="paneCol2Row0" styleClass="panel-deactivated" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-        <Pane fx:id="paneCol2Row1" styleClass="panel-deactivated" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <Pane fx:id="paneCol2Row2" styleClass="panel-deactivated" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-        <Pane fx:id="paneCol2Row3" styleClass="panel-deactivated" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                <Pane fx:id="paneCol2Row0" styleClass="panel-deactivated" GridPane.columnIndex="2"
+                      GridPane.rowIndex="0"/>
+                <Pane fx:id="paneCol2Row1" styleClass="panel-deactivated" GridPane.columnIndex="2"
+                      GridPane.rowIndex="1"/>
+                <Pane fx:id="paneCol2Row2" styleClass="panel-deactivated" GridPane.columnIndex="2"
+                      GridPane.rowIndex="2"/>
+                <Pane fx:id="paneCol2Row3" styleClass="panel-deactivated" GridPane.columnIndex="2"
+                      GridPane.rowIndex="3"/>
 
-        <Pane fx:id="paneCol3Row0" styleClass="panel-deactivated" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
-        <Pane fx:id="paneCol3Row1" styleClass="panel-deactivated" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-        <Pane fx:id="paneCol3Row2" styleClass="panel-deactivated" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-        <Pane fx:id="paneCol3Row3" styleClass="panel-deactivated" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+                <Pane fx:id="paneCol3Row0" styleClass="panel-deactivated" GridPane.columnIndex="3"
+                      GridPane.rowIndex="0"/>
+                <Pane fx:id="paneCol3Row1" styleClass="panel-deactivated" GridPane.columnIndex="3"
+                      GridPane.rowIndex="1"/>
+                <Pane fx:id="paneCol3Row2" styleClass="panel-deactivated" GridPane.columnIndex="3"
+                      GridPane.rowIndex="2"/>
+                <Pane fx:id="paneCol3Row3" styleClass="panel-deactivated" GridPane.columnIndex="3"
+                      GridPane.rowIndex="3"/>
 
-        <Pane fx:id="paneCol4Row0" styleClass="panel-deactivated" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
-        <Pane fx:id="paneCol4Row1" styleClass="panel-deactivated" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-        <Pane fx:id="paneCol4Row2" styleClass="panel-deactivated" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-        <Pane fx:id="paneCol4Row3" styleClass="panel-deactivated" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+                <Pane fx:id="paneCol4Row0" styleClass="panel-deactivated" GridPane.columnIndex="4"
+                      GridPane.rowIndex="0"/>
+                <Pane fx:id="paneCol4Row1" styleClass="panel-deactivated" GridPane.columnIndex="4"
+                      GridPane.rowIndex="1"/>
+                <Pane fx:id="paneCol4Row2" styleClass="panel-deactivated" GridPane.columnIndex="4"
+                      GridPane.rowIndex="2"/>
+                <Pane fx:id="paneCol4Row3" styleClass="panel-deactivated" GridPane.columnIndex="4"
+                      GridPane.rowIndex="3"/>
 
-        <Pane fx:id="paneCol5Row0" styleClass="panel-deactivated" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
-        <Pane fx:id="paneCol5Row1" styleClass="panel-deactivated" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
-        <Pane fx:id="paneCol5Row2" styleClass="panel-deactivated" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
-        <Pane fx:id="paneCol5Row3" styleClass="panel-deactivated" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
-        <columnConstraints>
-            <ColumnConstraints percentWidth="16.667"/>
-            <ColumnConstraints percentWidth="16.667"/>
-            <ColumnConstraints percentWidth="16.667"/>
-            <ColumnConstraints percentWidth="16.667"/>
-            <ColumnConstraints percentWidth="16.667"/>
-            <ColumnConstraints percentWidth="16.667"/>
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints percentHeight="25"/>
-            <RowConstraints percentHeight="25"/>
-            <RowConstraints percentHeight="25"/>
-            <RowConstraints percentHeight="25"/>
-        </rowConstraints>
-    </GridPane>
+                <Pane fx:id="paneCol5Row0" styleClass="panel-deactivated" GridPane.columnIndex="5"
+                      GridPane.rowIndex="0"/>
+                <Pane fx:id="paneCol5Row1" styleClass="panel-deactivated" GridPane.columnIndex="5"
+                      GridPane.rowIndex="1"/>
+                <Pane fx:id="paneCol5Row2" styleClass="panel-deactivated" GridPane.columnIndex="5"
+                      GridPane.rowIndex="2"/>
+                <Pane fx:id="paneCol5Row3" styleClass="panel-deactivated" GridPane.columnIndex="5"
+                      GridPane.rowIndex="3"/>
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="16.667"/>
+                    <ColumnConstraints percentWidth="16.667"/>
+                    <ColumnConstraints percentWidth="16.667"/>
+                    <ColumnConstraints percentWidth="16.667"/>
+                    <ColumnConstraints percentWidth="16.667"/>
+                    <ColumnConstraints percentWidth="16.667"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints percentHeight="25"/>
+                    <RowConstraints percentHeight="25"/>
+                    <RowConstraints percentHeight="25"/>
+                    <RowConstraints percentHeight="25"/>
+                </rowConstraints>
+            </GridPane>
+            <Text fx:id="timerText" />
+        </children>
+    </StackPane>
 </GridPane>

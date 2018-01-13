@@ -13,13 +13,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		Font.loadFont(
-				Main.class.getResource("/resources/fonts/lmroman12-regular.otf").toURI().toURL
-						().getPath(),
-				10);
+				Main.class.getResource("/resources/fonts/lmroman12-regular.otf").toURI().toURL()
+						.getPath(), 10);
 
 		Parent root = FXMLLoader.load(getClass().getResource("timer.fxml"));
 		primaryStage.setTitle("Timer");
-		primaryStage.setScene(new Scene(root, 600, 100));
+		primaryStage.setScene(new Scene(root, 700, 140));
 		primaryStage.show();
 
 	}

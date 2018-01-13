@@ -124,7 +124,7 @@ public class TimerController {
 		int nano = duration.getNano();
 		long seconds = duration.getSeconds();
 		return String
-				.format("%02d:%02d:%02d:%d", seconds / 3600, (seconds % 3600) / 60, seconds % 60,
+				.format("%d:%02d:%02d:%d", seconds / 3600, (seconds % 3600) / 60, seconds % 60,
 						nano / 100_000_000);
 	}
 

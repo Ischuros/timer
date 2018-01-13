@@ -1,9 +1,9 @@
 
 #timerText {
     -fx-font-family:lmroman12-regular;
-    -fx-font-size: 30px;
-    -fx-fill: linear-gradient(#4cd5f5, #20bcff);
-    -fx-effect: dropshadow( gaussian , rgba(76, 233, 245, 0.5), 5, 0, 2, -2);
+    -fx-font-size: 80px;
+    -fx-fill: linear-gradient(#4cd5f5, #207abd);
+    -fx-effect: dropshadow( gaussian , rgba(76, 233, 245, 0.5), 15, 0, 2, -2);
 }
 
 .grid-background {
