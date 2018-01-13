@@ -18,8 +18,8 @@ public class Main extends Application {
 				10);
 
 		Parent root = FXMLLoader.load(getClass().getResource("timer.fxml"));
-		primaryStage.setTitle("Hello World");
-		primaryStage.setScene(new Scene(root, 600, 200));
+		primaryStage.setTitle("Timer");
+		primaryStage.setScene(new Scene(root, 600, 100));
 		primaryStage.show();
 
 	}
