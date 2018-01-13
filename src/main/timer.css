@@ -1,0 +1,19 @@
+
+#timerText {
+    -fx-font-family:lmroman12-regular;
+    -fx-font-size: 30px;
+    -fx-fill: linear-gradient(#4cd5f5, #20bcff);
+}
+
+.grid-background {
+    -fx-background-color: black;
+}
+
+.panel-activated {
+    -fx-background-color: #004450;
+    -fx-background-radius: 3;
+}
+.panel-deactivated {
+    -fx-background-color: #02272d;
+    -fx-background-radius: 3;
+}
