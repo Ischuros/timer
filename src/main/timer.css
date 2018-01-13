@@ -3,6 +3,7 @@
     -fx-font-family:lmroman12-regular;
     -fx-font-size: 30px;
     -fx-fill: linear-gradient(#4cd5f5, #20bcff);
+    -fx-effect: dropshadow( gaussian , rgba(76, 233, 245, 0.5), 5, 0, 2, -2);
 }
 
 .grid-background {
