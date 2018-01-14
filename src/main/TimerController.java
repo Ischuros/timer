@@ -2,8 +2,12 @@ package main;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -11,17 +15,18 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 
 
-public class TimerController {
+public class TimerController implements Initializable {
 
 	private static final int TICKING_DURATION_MILLIS = 100;
-	private static final int TIME_AMOUNT_MILLIS = 2 * 60 * 1000;
-	private static final String DEFAULT_SOUND_FILE = "dark_souls3.mp3";
+	private static final int TIME_AMOUNT_MILLIS = 2 * 1000;
 
 	@FXML
 	public Text timerText;
@@ -101,6 +106,9 @@ public class TimerController {
 	@FXML
 	public Button pauseButton;
 
+	@FXML
+	public ChoiceBox<SoundFileItem> soundPicker;
+
 	private Timeline timeline;
 	private java.time.Duration duration;
 	private PaneLighter paneLighter;
@@ -163,7 +171,8 @@ public class TimerController {
 	}
 
 	private void playSound() {
-		final String resource = "/resources/sounds/" + DEFAULT_SOUND_FILE;
+		SoundFileItem selectedSoundItem = soundPicker.getSelectionModel().getSelectedItem();
+		final String resource = "/resources/sounds/" + selectedSoundItem.getFileName();
 		try {
 			Media sound = new Media(Main.class.getResource(resource).toURI().toString());
 			new MediaPlayer(sound).play();
@@ -213,5 +222,27 @@ public class TimerController {
 	private void resetPauseButton() {
 		isTimerPaused = false;
 		pauseButton.setText("Pause");
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		createSoundChoiceBox();
+	}
+
+	private void createSoundChoiceBox() {
+		final SoundFileItem darkSouls3SoundItem =
+				new SoundFileItem("Dark Souls III", "dark_souls3.mp3");
+		ObservableList<SoundFileItem> soundsItems = FXCollections.observableArrayList();
+		soundsItems.add(new SoundFileItem("Air horn", "air_horn.mp3"));
+		soundsItems.add(new SoundFileItem("Bike horn", "bike_horn.mp3"));
+		soundsItems.add(new SoundFileItem("Buzzer", "buzzer.mp3"));
+		soundsItems.add(darkSouls3SoundItem);
+		soundsItems.add(new SoundFileItem("Fire alarm", "fire_alarm.mp3"));
+		soundsItems.add(new SoundFileItem("Fog horn", "fog_horn.mp3"));
+		soundsItems.add(new SoundFileItem("Ship bell", "ship_bell.mp3"));
+		soundsItems.add(new SoundFileItem("Temple bell", "temple_bell.mp3"));
+
+		soundPicker.setItems(soundsItems);
+		soundPicker.getSelectionModel().select(darkSouls3SoundItem);
 	}
 }
