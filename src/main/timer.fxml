@@ -18,7 +18,7 @@
         <Button fx:id="pauseButton" onAction="#pauseTimer" prefHeight="30.0" prefWidth="110.0" styleClass="toolbar-button" text="Pause" textAlignment="CENTER" />
         <Button onAction="#stopTimer" prefHeight="30.0" prefWidth="110.0" styleClass="toolbar-button" text="Stop" textAlignment="CENTER" />
         <ChoiceBox fx:id="soundPicker" prefHeight="30.0" prefWidth="100.0" />
-        <TextField fx:id="timeTextField" prefHeight="20.0" prefWidth="110.0" promptText="0:00:00.0" />
+        <TextField fx:id="timerStartValueTextField" prefHeight="20.0" prefWidth="110.0" promptText="0:00:00.0" />
     </ToolBar>
     <StackPane>
         <GridPane hgap="3" vgap="3">
@@ -61,6 +61,6 @@
             <Pane fx:id="paneCol5Row2" styleClass="panel-deactivated" GridPane.columnIndex="5" GridPane.rowIndex="2" />
             <Pane fx:id="paneCol5Row3" styleClass="panel-deactivated" GridPane.columnIndex="5" GridPane.rowIndex="3" />
         </GridPane>
-        <Text fx:id="timerText" text="2:00.0" />
+        <Text fx:id="timerDisplayText" />
     </StackPane>
 </VBox>

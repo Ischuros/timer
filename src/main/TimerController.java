@@ -1,5 +1,6 @@
 package main;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
@@ -21,6 +22,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,7 +36,7 @@ public class TimerController implements Initializable {
 	private static final int TIME_AMOUNT_MILLIS = 2 * 60 * 1000;
 
 	@FXML
-	public Text timerText;
+	public Text timerDisplayText;
 
 	@FXML
 	public Pane paneCol0Row0;
@@ -115,7 +117,7 @@ public class TimerController implements Initializable {
 	public ChoiceBox<SoundFileItem> soundPicker;
 
 	@FXML
-	public TextField timeTextField;
+	public TextField timerStartValueTextField;
 
 	private Timeline timeline;
 	private java.time.Duration duration;
@@ -129,20 +131,53 @@ public class TimerController implements Initializable {
 
 		timeline = new Timeline(
 				new KeyFrame(Duration.millis(TICKING_DURATION_MILLIS), event -> updateDuration()));
-		timeline.setCycleCount(TIME_AMOUNT_MILLIS / TICKING_DURATION_MILLIS + 1);
+		timeline.setCycleCount(calculateDurationInMillis(timerStartValueTextField.getText()) /
+				TICKING_DURATION_MILLIS + 1);
 		timeline.setOnFinished(event -> playSound());
 		timeline.playFromStart();
 	}
 
 	private java.time.Duration createDuration() {
 		Instant now = Instant.now();
-		return java.time.Duration.between(now, now.plus(TIME_AMOUNT_MILLIS, ChronoUnit.MILLIS));
+		return java.time.Duration.between(now,
+				now.plus(calculateDurationInMillis(timerStartValueTextField.getText()),
+						ChronoUnit.MILLIS));
+	}
+
+	int calculateDurationInMillis(String durationText) {
+		if (durationText == null || durationText.isEmpty()) {
+			return TIME_AMOUNT_MILLIS;
+		}
+
+		List<Integer> timeFields = new ArrayList<>();
+		Integer tenthSeconds = Integer.valueOf(durationText.split("\\.")[1]);
+		String[] secondsAndAboveFields = durationText.split("\\.")[0].split(":");
+
+		for (String field : secondsAndAboveFields) {
+			timeFields.add(Integer.valueOf(field));
+		}
+		timeFields.add(tenthSeconds);
+
+		while (timeFields.size() < 4) {
+			timeFields.add(0, 0);
+		}
+
+		return (timeFields.get(0) * 3600 + timeFields.get(1) * 60 + timeFields.get(2)) * 1000 +
+				timeFields.get(3) * 100;
 	}
 
 	private void updateDuration() {
-		timerText.setText(formatDuration(duration));
-		getPaneLighter().light((int) duration.getSeconds(), duration.getNano() / 100_000_000);
+		updateTextDisplay(duration);
 		this.duration = duration.minusMillis(TICKING_DURATION_MILLIS);
+	}
+
+	private void updateTextDisplayWithStartingDuration() {
+		updateTextDisplay(createDuration());
+	}
+
+	private void updateTextDisplay(java.time.Duration duration) {
+		timerDisplayText.setText(formatDuration(duration));
+		getPaneLighter().light((int) duration.getSeconds(), duration.getNano() / 100_000_000);
 	}
 
 	private String formatDuration(java.time.Duration duration) {
@@ -153,9 +188,14 @@ public class TimerController implements Initializable {
 		final int tenthSeconds = nano / 100_000_000;
 		final long seconds = totalSeconds % 60;
 
-		if (hours == 0 && minutes == 0) {
-			return String.format("%02d.%d", seconds, tenthSeconds);
-		} else if (hours == 0) {
+		if (hours == 0) {
+			if (minutes == 0) {
+				if (seconds < 10) {
+					return String.format("%d.%d", seconds, tenthSeconds);
+				}
+
+				return String.format("%02d.%d", seconds,tenthSeconds);
+			}
 			if (minutes < 10) {
 				return String.format("%d:%02d.%d", minutes, seconds, tenthSeconds);
 			}
@@ -236,13 +276,18 @@ public class TimerController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		createSoundChoiceBox();
 		createTimeTextField();
+		updateTextDisplayWithStartingDuration();
 	}
+
 
 	private void createTimeTextField() {
 
 		StringConverter<String> stringFormatter = new StringConverter<String>() {
 			@Override
 			public String toString(String object) {
+				if (object == null) {
+					return "2:00.0";
+				}
 				return parseValue(cleanTimeTextString(object));
 			}
 
@@ -251,19 +296,17 @@ public class TimerController implements Initializable {
 				return string;
 			}
 		};
-		timeTextField.setTextFormatter(new TextFormatter<>(stringFormatter));
-
-		timeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue) {
-				return;
+		timerStartValueTextField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+			if (isNowFocused) {
+				timerStartValueTextField.selectAll();
+			} else {
+				if (timeline == null || timeline.getStatus() == Animation.Status.STOPPED) {
+					updateTextDisplayWithStartingDuration();
+				}
 			}
-
-			modifyDuration(timeTextField.getText());
 		});
-	}
-
-	private void modifyDuration(String inputDuration) {
-		System.err.println(inputDuration);
+		timerStartValueTextField.setTextFormatter(new TextFormatter<>(stringFormatter));
+		timerStartValueTextField.setText("5:00.0");
 	}
 
 	private String cleanTimeTextString(String toClean) {
@@ -295,7 +338,7 @@ public class TimerController implements Initializable {
 		}
 
 		String toReturn = sb.toString();
-		return toReturn.startsWith(".") ? "0"+toReturn : toReturn;
+		return toReturn.startsWith(".") ? "0" + toReturn : toReturn;
 	}
 
 	String removeStartingZero(String toProceed) {
