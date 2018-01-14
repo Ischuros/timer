@@ -119,6 +119,7 @@ public class TimerController implements Initializable {
 	public TextField timerStartValueTextField;
 
 	private Timeline timeline;
+	private java.time.Duration initialDuration;
 	private java.time.Duration duration;
 	private PaneLighter paneLighter;
 	private boolean isTimerPaused;
@@ -127,6 +128,7 @@ public class TimerController implements Initializable {
 		stopTimer();
 
 		duration = createDuration();
+		initialDuration = duration;
 
 		timeline = new Timeline(
 				new KeyFrame(Duration.millis(TICKING_DURATION_MILLIS), event -> updateDuration()));
@@ -237,13 +239,19 @@ public class TimerController implements Initializable {
 		}
 
 		if (isTimerPaused) {
-			timeline.play();
+			final long initialDurationMillis = getDurationMillis(initialDuration);
+			final long currentDurationMillis = getDurationMillis(duration);
+			timeline.playFrom(Duration.millis(initialDurationMillis - currentDurationMillis));
 			pauseButton.setText("Pause");
 		} else {
 			timeline.stop();
 			pauseButton.setText("Resume");
 		}
 		isTimerPaused = !isTimerPaused;
+	}
+
+	private long getDurationMillis(java.time.Duration duration) {
+		return duration.getNano() / 1_000_000 + duration.getSeconds() * 1000;
 	}
 
 	private void resetPauseButton() {
