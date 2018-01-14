@@ -1,23 +1,19 @@
 package main;
 
-import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PaneLighter {
 
-	private List<Pane> unityHoursList = new ArrayList<>();
-	private List<Pane> decadeMinutesList = new ArrayList<>();
-	private List<Pane> unityMinutesList = new ArrayList<>();
-	private List<Pane> decadeSecondsList = new ArrayList<>();
-	private List<Pane> unitySecondsList = new ArrayList<>();
-	private List<Pane> tenthSecondsList = new ArrayList<>();
+	private List<Pane> unityHoursList;
+	private List<Pane> decadeMinutesList;
+	private List<Pane> unityMinutesList;
+	private List<Pane> decadeSecondsList;
+	private List<Pane> unitySecondsList;
+	private List<Pane> tenthSecondsList;
 
-	public PaneLighter(List<Pane> unityHoursList, List<Pane> decadeMinutesList,
+	PaneLighter(List<Pane> unityHoursList, List<Pane> decadeMinutesList,
 			List<Pane> unityMinutesList, List<Pane> decadeSecondsList, List<Pane> unitySecondsList,
 			List<Pane> tenthSecondsList) {
 		this.unityHoursList = unityHoursList;

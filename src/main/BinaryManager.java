@@ -18,12 +18,17 @@ public class BinaryManager {
 
 	BinaryManager(int seconds, int tenthSeconds) {
 		this.hoursUnity = calculateUnity(seconds / 3600);
-		this.minutesDecade = calculateDecade(seconds / 60);
-		this.minutesUnity = calculateUnity(seconds / 60);
-		this.secondsDecade = calculateDecade(seconds);
-		this.secondsUnity = calculateUnity(seconds);
+		this.minutesDecade = calculateDecade((seconds - hoursUnity * 3600) / 60);
+		this.minutesUnity =
+				calculateUnity((seconds - hoursUnity * 3600 - minutesDecade * 10 * 60) / 60);
+		this.secondsDecade = calculateDecade(
+				seconds - hoursUnity * 3600 - minutesDecade * 10 * 60 - minutesUnity * 60);
+		this.secondsUnity = calculateUnity(
+				seconds - hoursUnity * 3600 - minutesDecade * 10 * 60 - minutesUnity * 60 -
+						secondsDecade * 10);
 		this.tenthSeconds = tenthSeconds;
 	}
+
 
 	private int calculateUnity(int number) {
 		return number % 10;
@@ -77,5 +82,29 @@ public class BinaryManager {
 		}
 
 		return list;
+	}
+
+	public int getHoursUnity() {
+		return hoursUnity;
+	}
+
+	public int getMinutesDecade() {
+		return minutesDecade;
+	}
+
+	public int getMinutesUnity() {
+		return minutesUnity;
+	}
+
+	public int getSecondsDecade() {
+		return secondsDecade;
+	}
+
+	public int getSecondsUnity() {
+		return secondsUnity;
+	}
+
+	public int getTenthSeconds() {
+		return tenthSeconds;
 	}
 }
