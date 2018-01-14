@@ -85,6 +85,6 @@
             <Pane fx:id="paneCol5Row3" styleClass="panel-deactivated"
                   GridPane.columnIndex="5" GridPane.rowIndex="3"/>
         </GridPane>
-        <Text fx:id="timerText" text="00:00.0"/>
+        <Text fx:id="timerText" text="2:00.0"/>
     </StackPane>
 </VBox>
