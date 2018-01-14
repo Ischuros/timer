@@ -3,6 +3,7 @@ package main;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -97,21 +98,29 @@ public class TimerController {
 	@FXML
 	public Pane paneCol5Row3;
 
+	@FXML
+	public Button pauseButton;
+
 	private Timeline timeline;
 	private java.time.Duration duration;
 	private PaneLighter paneLighter;
+	private boolean isTimerPaused;
 
 	public void startTimer() {
 		stopTimer();
 
-		Instant now = Instant.now();
-		duration = java.time.Duration.between(now, now.plus(TIME_AMOUNT_MILLIS, ChronoUnit.MILLIS));
+		duration = createDuration();
 
 		timeline = new Timeline(
 				new KeyFrame(Duration.millis(TICKING_DURATION_MILLIS), event -> updateDuration()));
 		timeline.setCycleCount(TIME_AMOUNT_MILLIS / TICKING_DURATION_MILLIS + 1);
 		timeline.setOnFinished(event -> playSound());
-		timeline.play();
+		timeline.playFromStart();
+	}
+
+	private java.time.Duration createDuration() {
+		Instant now = Instant.now();
+		return java.time.Duration.between(now, now.plus(TIME_AMOUNT_MILLIS, ChronoUnit.MILLIS));
 	}
 
 	private void updateDuration() {
@@ -147,6 +156,10 @@ public class TimerController {
 			return;
 		}
 		timeline.stop();
+		duration = createDuration();
+		updateDuration();
+		timeline = null;
+		resetPauseButton();
 	}
 
 	private void playSound() {
@@ -180,5 +193,25 @@ public class TimerController {
 		paneLighter = new PaneLighter(unityHoursList, decadeMinutesList, unityMinutesList,
 				decadeSecondsList, unitySecondsList, tenthSecondsList);
 		return paneLighter;
+	}
+
+	public void pauseTimer() {
+		if (timeline == null) {
+			return;
+		}
+
+		if (isTimerPaused) {
+			timeline.play();
+			pauseButton.setText("Pause");
+		} else {
+			timeline.stop();
+			pauseButton.setText("Resume");
+		}
+		isTimerPaused = !isTimerPaused;
+	}
+
+	private void resetPauseButton() {
+		isTimerPaused = false;
+		pauseButton.setText("Pause");
 	}
 }
