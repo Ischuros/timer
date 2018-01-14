@@ -9,11 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -22,6 +24,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class TimerController implements Initializable {
@@ -231,6 +235,75 @@ public class TimerController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		createSoundChoiceBox();
+		createTimeTextField();
+	}
+
+	private void createTimeTextField() {
+
+		StringConverter<String> stringFormatter = new StringConverter<String>() {
+			@Override
+			public String toString(String object) {
+				return parseValue(cleanTimeTextString(object));
+			}
+
+			@Override
+			public String fromString(String string) {
+				return string;
+			}
+		};
+		timeTextField.setTextFormatter(new TextFormatter<>(stringFormatter));
+
+		timeTextField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue) {
+				return;
+			}
+
+			modifyDuration(timeTextField.getText());
+		});
+	}
+
+	private void modifyDuration(String inputDuration) {
+		System.err.println(inputDuration);
+	}
+
+	private String cleanTimeTextString(String toClean) {
+		if (toClean == null) {
+			return "";
+		}
+		return removeStartingZero(toClean.replaceAll("[^\\d]", ""));
+	}
+
+	String parseValue(String toParse) {
+		if (toParse == null || toParse.isEmpty()) {
+			return "";
+		}
+
+		int indexToAddDelimiter = toParse.length() % 2 + 1;
+		int indexToAddTenthDelimiter = toParse.length() - 1;
+
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < toParse.length(); i++) {
+			if (i == indexToAddDelimiter && i != indexToAddTenthDelimiter) {
+				sb.append(":");
+				indexToAddDelimiter += 2;
+			}
+			if (i == indexToAddTenthDelimiter) {
+				sb.append(".");
+			}
+
+			sb.append(toParse.charAt(i));
+		}
+
+		String toReturn = sb.toString();
+		return toReturn.startsWith(".") ? "0"+toReturn : toReturn;
+	}
+
+	String removeStartingZero(String toProceed) {
+		Pattern pattern = Pattern.compile("^[0]*");
+		Matcher matcher = pattern.matcher(toProceed);
+
+		String cleaned = matcher.replaceFirst("");
+		return cleaned.startsWith(".") ? "0" + cleaned : cleaned;
 	}
 
 	private void createSoundChoiceBox() {
