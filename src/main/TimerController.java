@@ -22,7 +22,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -33,7 +32,7 @@ import java.util.regex.Pattern;
 public class TimerController implements Initializable {
 
 	private static final int TICKING_DURATION_MILLIS = 100;
-	private static final int TIME_AMOUNT_MILLIS = 2 * 60 * 1000;
+	private static final String DEFAULT_TIME_INPUT = "2:00.0";
 
 	@FXML
 	public Text timerDisplayText;
@@ -131,40 +130,20 @@ public class TimerController implements Initializable {
 
 		timeline = new Timeline(
 				new KeyFrame(Duration.millis(TICKING_DURATION_MILLIS), event -> updateDuration()));
-		timeline.setCycleCount(calculateDurationInMillis(timerStartValueTextField.getText()) /
-				TICKING_DURATION_MILLIS + 1);
+		timeline.setCycleCount(
+				StringToDurationCalculator.getMilliSeconds(timerStartValueTextField.getText()) /
+						TICKING_DURATION_MILLIS + 1);
 		timeline.setOnFinished(event -> playSound());
 		timeline.playFromStart();
 	}
 
 	private java.time.Duration createDuration() {
 		Instant now = Instant.now();
-		return java.time.Duration.between(now,
-				now.plus(calculateDurationInMillis(timerStartValueTextField.getText()),
-						ChronoUnit.MILLIS));
+		return java.time.Duration.between(now, now.plus(
+				StringToDurationCalculator.getMilliSeconds(timerStartValueTextField.getText()),
+				ChronoUnit.MILLIS));
 	}
 
-	int calculateDurationInMillis(String durationText) {
-		if (durationText == null || durationText.isEmpty()) {
-			return TIME_AMOUNT_MILLIS;
-		}
-
-		List<Integer> timeFields = new ArrayList<>();
-		Integer tenthSeconds = Integer.valueOf(durationText.split("\\.")[1]);
-		String[] secondsAndAboveFields = durationText.split("\\.")[0].split(":");
-
-		for (String field : secondsAndAboveFields) {
-			timeFields.add(Integer.valueOf(field));
-		}
-		timeFields.add(tenthSeconds);
-
-		while (timeFields.size() < 4) {
-			timeFields.add(0, 0);
-		}
-
-		return (timeFields.get(0) * 3600 + timeFields.get(1) * 60 + timeFields.get(2)) * 1000 +
-				timeFields.get(3) * 100;
-	}
 
 	private void updateDuration() {
 		updateTextDisplay(duration);
@@ -194,7 +173,7 @@ public class TimerController implements Initializable {
 					return String.format("%d.%d", seconds, tenthSeconds);
 				}
 
-				return String.format("%02d.%d", seconds,tenthSeconds);
+				return String.format("%02d.%d", seconds, tenthSeconds);
 			}
 			if (minutes < 10) {
 				return String.format("%d:%02d.%d", minutes, seconds, tenthSeconds);
@@ -279,16 +258,18 @@ public class TimerController implements Initializable {
 		updateTextDisplayWithStartingDuration();
 	}
 
-
 	private void createTimeTextField() {
 
 		StringConverter<String> stringFormatter = new StringConverter<String>() {
 			@Override
 			public String toString(String object) {
 				if (object == null) {
-					return "2:00.0";
+					return DEFAULT_TIME_INPUT;
 				}
-				return parseValue(cleanTimeTextString(object));
+
+				final String parsedValue = parseValue(cleanTimeTextString(object));
+				return StringToDurationCalculator.isValidStringDuration(parsedValue) ? parsedValue :
+						DEFAULT_TIME_INPUT;
 			}
 
 			@Override

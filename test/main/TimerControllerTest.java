@@ -26,14 +26,4 @@ public class TimerControllerTest {
 		assertEquals("365", new TimerController().removeStartingZero("00000365"));
 	}
 
-	@Test
-	public void calculateDurationInMillis() {
-		assertEquals(2*60*1000, new TimerController().calculateDurationInMillis("2:00.0"));
-
-		assertEquals(60*1000+59*1000+3*100, new TimerController().calculateDurationInMillis
-				("1:59.3"));
-		assertEquals(2*3600*1000+25*60*1000+12*1000+7*100, new TimerController()
-				.calculateDurationInMillis
-				("2:25:12.7"));
-	}
 }
