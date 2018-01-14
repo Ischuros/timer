@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="3" styleClass="black-background" stylesheets="/main/timer.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.TimerController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="3" stylesheets="/main/timer.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.TimerController">
     <ToolBar prefHeight="40.0" prefWidth="200.0">
         <Button onAction="#startTimer" prefHeight="30.0" prefWidth="110.0" styleClass="toolbar-button" text="Start" textAlignment="CENTER" />
         <Button fx:id="pauseButton" onAction="#pauseTimer" prefHeight="30.0" prefWidth="110.0" styleClass="toolbar-button" text="Pause" textAlignment="CENTER" />
@@ -19,7 +19,7 @@
         <ChoiceBox fx:id="soundPicker" prefHeight="30.0" prefWidth="100.0" />
     </ToolBar>
     <StackPane>
-        <GridPane hgap="3" styleClass="black-background" vgap="3">
+        <GridPane hgap="3" vgap="3">
             <columnConstraints>
                 <ColumnConstraints percentWidth="16.667" />
                 <ColumnConstraints percentWidth="16.667" />

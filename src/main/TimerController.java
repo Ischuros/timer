@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class TimerController implements Initializable {
 
 	private static final int TICKING_DURATION_MILLIS = 100;
-	private static final int TIME_AMOUNT_MILLIS = 2 * 1000;
+	private static final int TIME_AMOUNT_MILLIS = 2 * 60 * 1000;
 
 	@FXML
 	public Text timerText;

@@ -1,3 +1,7 @@
+.root {
+    -fx-background-image: url("/resources/images/space.jpg");
+    -fx-background-size: 100% 100%;
+}
 
 #timerText {
     -fx-font-family: lmroman12-regular;
@@ -7,8 +11,7 @@
 }
 
 .tool-bar {
-    -fx-background-image: url("/resources/images/space.jpg");
-    -fx-background-size: 100% 100%;
+    -fx-background-color: rgba(0,0,0,0);
 }
 
 .toolbar-button {
@@ -36,16 +39,42 @@
     -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.7), 20, 0, 0, 0);
 }
 
-.black-background {
-    -fx-background-color: black;
-}
-
 .panel-activated {
-    -fx-background-color: #004450;
+    -fx-background-color: rgba(0,68,80,0.5);
     -fx-background-radius: 3;
 }
 
 .panel-deactivated {
-    -fx-background-color: #02272d;
+    -fx-background-color: rgba(2,39,45,0.25);
     -fx-background-radius: 3;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #a6b5c9,
+    linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+    linear-gradient(#004450 0%, #004450 5%, #02272d 50%, #02272d 51%, #4a6c9b 100%);
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: rgba(0,163,175, 0.5);
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box {
+    -fx-font-family: lmroman12-regular;
+    -fx-background-color: #a6b5c9,
+    linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+    linear-gradient(#004450 0%, #004450 5%, #02272d 50%, #02272d 51%, #4a6c9b 100%);
+    -fx-mark-color: white;
+}
+
+.choice-box > .label {
+    -fx-text-fill: white;
 }
