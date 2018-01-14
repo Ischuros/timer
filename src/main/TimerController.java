@@ -19,7 +19,7 @@ import java.util.List;
 public class TimerController {
 
 	private static final int TICKING_DURATION_MILLIS = 100;
-	private static final int TIME_AMOUNT_MILLIS = 5*60*1000;
+	private static final int TIME_AMOUNT_MILLIS = 5*60*60*1000;
 	private static final String DEFAULT_SOUND_FILE = "dark_souls3.mp3";
 
 	@FXML
@@ -123,10 +123,22 @@ public class TimerController {
 	private String formatDuration(java.time.Duration duration) {
 		int nano = duration.getNano();
 		long seconds = duration.getSeconds();
+		final long hours = seconds / 3600;
+		final long minutes = (seconds % 3600) / 60;
+
+		if (hours == 0 && minutes == 0) {
+			return String.format("%02d.%d", seconds % 60,
+					nano / 100_000_000);
+		} else if (hours == 0) {
+			return String.format("%02d:%02d.%d", minutes, seconds % 60,
+					nano / 100_000_000);
+		}
+
 		return String
-				.format("%d:%02d:%02d:%d", seconds / 3600, (seconds % 3600) / 60, seconds % 60,
+				.format("%d:%02d:%02d.%d", hours, minutes, seconds % 60,
 						nano / 100_000_000);
 	}
+
 
 	public void stopTimer() {
 		if (timeline == null) {
