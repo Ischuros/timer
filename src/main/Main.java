@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -19,9 +20,10 @@ public class Main extends Application {
 		Parent root = FXMLLoader.load(getClass().getResource("timer.fxml"));
 		primaryStage.setTitle("Timer");
 		primaryStage.setScene(new Scene(root, 700, 140));
+		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream
+				("/resources/images/timer.ico")));
 		primaryStage.show();
 		primaryStage.setResizable(false);
-
 	}
 
 
