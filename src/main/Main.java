@@ -20,6 +20,7 @@ public class Main extends Application {
 		primaryStage.setTitle("Timer");
 		primaryStage.setScene(new Scene(root, 700, 140));
 		primaryStage.show();
+		primaryStage.setResizable(false);
 
 	}
 

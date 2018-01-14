@@ -19,7 +19,7 @@ import java.util.List;
 public class TimerController {
 
 	private static final int TICKING_DURATION_MILLIS = 100;
-	private static final int TIME_AMOUNT_MILLIS = 5*60*60*1000;
+	private static final int TIME_AMOUNT_MILLIS = 2 * 60 * 1000;
 	private static final String DEFAULT_SOUND_FILE = "dark_souls3.mp3";
 
 	@FXML
@@ -116,27 +116,29 @@ public class TimerController {
 
 	private void updateDuration() {
 		timerText.setText(formatDuration(duration));
-		getPaneLighter().light((int)duration.getSeconds(), duration.getNano()/ 100_000_000);
+		getPaneLighter().light((int) duration.getSeconds(), duration.getNano() / 100_000_000);
 		this.duration = duration.minusMillis(TICKING_DURATION_MILLIS);
 	}
 
 	private String formatDuration(java.time.Duration duration) {
 		int nano = duration.getNano();
-		long seconds = duration.getSeconds();
-		final long hours = seconds / 3600;
-		final long minutes = (seconds % 3600) / 60;
+		long totalSeconds = duration.getSeconds();
+		final long hours = totalSeconds / 3600;
+		final long minutes = (totalSeconds % 3600) / 60;
+		final int tenthSeconds = nano / 100_000_000;
+		final long seconds = totalSeconds % 60;
 
 		if (hours == 0 && minutes == 0) {
-			return String.format("%02d.%d", seconds % 60,
-					nano / 100_000_000);
+			return String.format("%02d.%d", seconds, tenthSeconds);
 		} else if (hours == 0) {
-			return String.format("%02d:%02d.%d", minutes, seconds % 60,
-					nano / 100_000_000);
+			if (minutes < 10) {
+				return String.format("%d:%02d.%d", minutes, seconds, tenthSeconds);
+			}
+
+			return String.format("%02d:%02d.%d", minutes, seconds, tenthSeconds);
 		}
 
-		return String
-				.format("%d:%02d:%02d.%d", hours, minutes, seconds % 60,
-						nano / 100_000_000);
+		return String.format("%d:%02d:%02d.%d", hours, minutes, seconds, tenthSeconds);
 	}
 
 

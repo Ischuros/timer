@@ -15,7 +15,7 @@
       prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.TimerController"
       stylesheets="/main/timer.css"
-        styleClass="black-background">
+        styleClass="black-background" spacing="3">
     <ToolBar prefHeight="40.0" prefWidth="200.0">
         <Button onAction="#startTimer" styleClass="toolbar-button" text="Start"/>
         <Button onAction="#stopTimer" styleClass="toolbar-button" text="Stop"/>
