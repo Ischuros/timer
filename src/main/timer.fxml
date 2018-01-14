@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="3" styleClass="black-background" stylesheets="/main/timer.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.TimerController">
     <ToolBar prefHeight="40.0" prefWidth="200.0">
-        <Button onAction="#startTimer" prefWidth="110.0" styleClass="toolbar-button" text="Start" textAlignment="CENTER" />
-        <Button fx:id="pauseButton" onAction="#pauseTimer" prefWidth="110.0" styleClass="toolbar-button" text="Pause" textAlignment="CENTER" />
-        <Button onAction="#stopTimer" prefWidth="110.0" styleClass="toolbar-button" text="Stop" textAlignment="CENTER" />
-        <ChoiceBox fx:id="soundPicker" prefHeight="25.0" prefWidth="100.0"/>
+        <Button onAction="#startTimer" prefHeight="30.0" prefWidth="110.0" styleClass="toolbar-button" text="Start" textAlignment="CENTER" />
+        <Button fx:id="pauseButton" onAction="#pauseTimer" prefHeight="30.0" prefWidth="110.0" styleClass="toolbar-button" text="Pause" textAlignment="CENTER" />
+        <Button onAction="#stopTimer" prefHeight="30.0" prefWidth="110.0" styleClass="toolbar-button" text="Stop" textAlignment="CENTER" />
+        <ChoiceBox fx:id="soundPicker" prefHeight="30.0" prefWidth="100.0" />
     </ToolBar>
     <StackPane>
         <GridPane hgap="3" styleClass="black-background" vgap="3">
