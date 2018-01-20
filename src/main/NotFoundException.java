@@ -1,8 +1,8 @@
 package main;
 
-public class NotFoundException extends RuntimeException {
+class NotFoundException extends RuntimeException {
 
-	public NotFoundException(String fileName) {
+	NotFoundException(String fileName) {
 		super("File not found : " + fileName);
 	}
 }

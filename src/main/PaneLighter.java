@@ -4,14 +4,14 @@ import javafx.scene.layout.Pane;
 
 import java.util.List;
 
-public class PaneLighter {
+class PaneLighter {
 
-	private List<Pane> unityHoursList;
-	private List<Pane> decadeMinutesList;
-	private List<Pane> unityMinutesList;
-	private List<Pane> decadeSecondsList;
-	private List<Pane> unitySecondsList;
-	private List<Pane> tenthSecondsList;
+	private final List<Pane> unityHoursList;
+	private final List<Pane> decadeMinutesList;
+	private final List<Pane> unityMinutesList;
+	private final List<Pane> decadeSecondsList;
+	private final List<Pane> unitySecondsList;
+	private final List<Pane> tenthSecondsList;
 
 	PaneLighter(List<Pane> unityHoursList, List<Pane> decadeMinutesList,
 			List<Pane> unityMinutesList, List<Pane> decadeSecondsList, List<Pane> unitySecondsList,

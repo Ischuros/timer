@@ -35,88 +35,88 @@ public class TimerController implements Initializable {
 	private static final String DEFAULT_TIME_INPUT = "2:00.0";
 
 	@FXML
-	public Text timerDisplayText;
+	private Text timerDisplayText;
 
 	@FXML
-	public Pane paneCol0Row0;
+	private Pane paneCol0Row0;
 
 	@FXML
-	public Pane paneCol0Row1;
+	private Pane paneCol0Row1;
 
 	@FXML
-	public Pane paneCol0Row2;
+	private Pane paneCol0Row2;
 
 	@FXML
-	public Pane paneCol0Row3;
+	private Pane paneCol0Row3;
 
 	@FXML
-	public Pane paneCol1Row0;
+	private Pane paneCol1Row0;
 
 	@FXML
-	public Pane paneCol1Row1;
+	private Pane paneCol1Row1;
 
 	@FXML
-	public Pane paneCol1Row2;
+	private Pane paneCol1Row2;
 
 	@FXML
-	public Pane paneCol1Row3;
+	private Pane paneCol1Row3;
 
 	@FXML
-	public Pane paneCol2Row0;
+	private Pane paneCol2Row0;
 
 	@FXML
-	public Pane paneCol2Row1;
+	private Pane paneCol2Row1;
 
 	@FXML
-	public Pane paneCol2Row2;
+	private Pane paneCol2Row2;
 
 	@FXML
-	public Pane paneCol2Row3;
+	private Pane paneCol2Row3;
 
 	@FXML
-	public Pane paneCol3Row0;
+	private Pane paneCol3Row0;
 
 	@FXML
-	public Pane paneCol3Row1;
+	private Pane paneCol3Row1;
 
 	@FXML
-	public Pane paneCol3Row2;
+	private Pane paneCol3Row2;
 
 	@FXML
-	public Pane paneCol3Row3;
+	private Pane paneCol3Row3;
 
 	@FXML
-	public Pane paneCol4Row0;
+	private Pane paneCol4Row0;
 
 	@FXML
-	public Pane paneCol4Row1;
+	private Pane paneCol4Row1;
 
 	@FXML
-	public Pane paneCol4Row2;
+	private Pane paneCol4Row2;
 
 	@FXML
-	public Pane paneCol4Row3;
+	private Pane paneCol4Row3;
 
 	@FXML
-	public Pane paneCol5Row0;
+	private Pane paneCol5Row0;
 
 	@FXML
-	public Pane paneCol5Row1;
+	private Pane paneCol5Row1;
 
 	@FXML
-	public Pane paneCol5Row2;
+	private Pane paneCol5Row2;
 
 	@FXML
-	public Pane paneCol5Row3;
+	private Pane paneCol5Row3;
 
 	@FXML
-	public Button pauseButton;
+	private Button pauseButton;
 
 	@FXML
-	public ChoiceBox<SoundFileItem> soundPicker;
+	private ChoiceBox<SoundFileItem> soundPicker;
 
 	@FXML
-	public TextField timerStartValueTextField;
+	private TextField timerStartValueTextField;
 
 	private Timeline timeline;
 	private java.time.Duration initialDuration;
@@ -188,7 +188,8 @@ public class TimerController implements Initializable {
 	}
 
 
-	public void stopTimer() {
+	@FXML
+	private void stopTimer() {
 		if (timeline == null) {
 			return;
 		}

@@ -1,17 +1,13 @@
 package main;
 
-public class SoundFileItem {
+class SoundFileItem {
 
-	private String nameToDisplay;
-	private String fileName;
+	private final String nameToDisplay;
+	private final String fileName;
 
 	SoundFileItem(String nameToDisplay, String fileName) {
 		this.nameToDisplay = nameToDisplay;
 		this.fileName = fileName;
-	}
-
-	public String getNameToDisplay() {
-		return nameToDisplay;
 	}
 
 	public String getFileName() {

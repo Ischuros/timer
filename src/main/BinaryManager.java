@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BinaryManager {
+class BinaryManager {
 
 	private static final int FIGURE_MAX_VALUE = 9;
 	private static final int BINARY_MAX_DIGIT_FOR_FIGURE = 4;
 
-	private int hoursUnity;
-	private int minutesDecade;
-	private int minutesUnity;
-	private int secondsDecade;
-	private int secondsUnity;
-	private int tenthSeconds;
+	private final int hoursUnity;
+	private final int minutesDecade;
+	private final int minutesUnity;
+	private final int secondsDecade;
+	private final int secondsUnity;
+	private final int tenthSeconds;
 
 	BinaryManager(int seconds, int tenthSeconds) {
 		this.hoursUnity = calculateUnity(seconds / 3600);
@@ -65,7 +65,7 @@ public class BinaryManager {
 		return result;
 	}
 
-	protected List<Boolean> convertBinaryToListOfBoolean(int number) {
+	List<Boolean> convertBinaryToListOfBoolean(int number) {
 		if (number > FIGURE_MAX_VALUE) {
 			throw new NotAFigureException(number);
 		}
