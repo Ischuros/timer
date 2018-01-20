@@ -1,4 +1,4 @@
-package main;
+package main.timer;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +17,9 @@ public class Main extends Application {
 				Main.class.getResource("/resources/fonts/lmroman12-regular.otf").toURI().toURL()
 						.getPath(), 10);
 
-		Parent root = FXMLLoader.load(getClass().getResource("timer.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("view/timer.fxml"));
 		primaryStage.setTitle("Timer");
-		primaryStage.setScene(new Scene(root, 700, 140));
+		primaryStage.setScene(new Scene(root, 700, 150));
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream
 				("/resources/images/timer.ico")));
 		primaryStage.show();

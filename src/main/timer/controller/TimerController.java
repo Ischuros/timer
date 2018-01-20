@@ -1,4 +1,4 @@
-package main;
+package main.timer.controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -17,6 +17,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
+import main.timer.Main;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -269,7 +270,7 @@ public class TimerController implements Initializable {
 
 	private void createTimeTextField() {
 
-		StringConverter<String> stringFormatter = new StringConverter<String>() {
+		StringConverter<String> stringFormatter = new StringConverter<>() {
 			@Override
 			public String toString(String object) {
 				if (object == null) {

@@ -1,4 +1,4 @@
-package main;
+package main.timer.controller;
 
 class NotFoundException extends RuntimeException {
 
