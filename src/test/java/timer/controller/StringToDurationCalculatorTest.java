@@ -1,6 +1,5 @@
-package main.timer.controller;
+package timer.controller;
 
-import main.timer.controller.StringToDurationCalculator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

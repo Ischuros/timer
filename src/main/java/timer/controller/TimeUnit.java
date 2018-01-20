@@ -1,4 +1,4 @@
-package main.timer.controller;
+package timer.controller;
 
 public enum TimeUnit {
 	HOURS_UNITY, MINUTES_DECADE, MINUTES_UNITY, SECONDES_DECADE, SECONDS_UNITY, TENTH_SECONDES

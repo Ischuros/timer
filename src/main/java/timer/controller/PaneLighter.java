@@ -1,4 +1,4 @@
-package main.timer.controller;
+package timer.controller;
 
 import javafx.scene.layout.Pane;
 

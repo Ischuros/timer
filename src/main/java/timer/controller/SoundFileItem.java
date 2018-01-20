@@ -1,4 +1,4 @@
-package main.timer.controller;
+package timer.controller;
 
 class SoundFileItem {
 

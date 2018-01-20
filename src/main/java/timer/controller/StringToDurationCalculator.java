@@ -1,4 +1,4 @@
-package main.timer.controller;
+package timer.controller;
 
 import java.util.ArrayList;
 import java.util.List;

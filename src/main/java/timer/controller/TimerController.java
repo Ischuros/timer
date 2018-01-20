@@ -1,4 +1,4 @@
-package main.timer.controller;
+package timer.controller;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -17,7 +17,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
-import main.timer.Main;
 
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -25,6 +24,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -203,9 +203,12 @@ public class TimerController implements Initializable {
 
 	private void playSound() {
 		SoundFileItem selectedSoundItem = soundPicker.getSelectionModel().getSelectedItem();
-		final String resource = "/resources/sounds/" + selectedSoundItem.getFileName();
+		final String resource = "sounds/" + selectedSoundItem.getFileName();
 		try {
-			Media sound = new Media(Main.class.getResource(resource).toURI().toString());
+			final String soundSource =
+					Objects.requireNonNull(getClass().getClassLoader().getResource(resource),
+							"Sound file can not be null.").toURI().toString();
+			Media sound = new Media(soundSource);
 			new MediaPlayer(sound).play();
 		} catch (URISyntaxException e) {
 			throw new NotFoundException(resource);

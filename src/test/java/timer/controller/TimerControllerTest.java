@@ -1,6 +1,5 @@
-package main.timer.controller;
+package timer.controller;
 
-import main.timer.controller.TimerController;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

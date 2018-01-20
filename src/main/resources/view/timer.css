@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("/resources/images/space.jpg");
+    -fx-background-image: url("/images/space.jpg");
     -fx-background-size: 100% 100%;
 }
 

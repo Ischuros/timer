@@ -1,6 +1,5 @@
-package main.timer.controller;
+package timer.controller;
 
-import main.timer.controller.BinaryManager;
 import org.junit.Test;
 
 import java.util.ArrayList;
